@@ -1,0 +1,36 @@
+<section class="address-section">
+    <div class="address-wrapper">
+        <div class="address-container">
+            <h1 class="header-address">Shipping Address</h1>
+            <form [formGroup]="addressForm">
+                <div class="form-group" style="grid-column: span 2">
+                    <span class="label">Street Address</span>
+                    <input type="text" formControlName="streetAddress">
+                    <span class="alert-text" *ngIf="(addressForm.controls['streetAddress'].touched || addressForm.controls['streetAddress'].dirty) && addressForm.controls['streetAddress'].errors?.['required']">Street address is required</span>
+                </div>
+                <div class="form-group">
+                    <span class="label">City</span>
+                    <input type="text" formControlName="City">
+                    <span class="alert-text" *ngIf="(addressForm.controls['City'].touched || addressForm.controls['City'].dirty) && addressForm.controls['City'].errors?.['required']">City name is required</span>
+                </div>
+                <div class="form-group">
+                    <span class="label">State</span>
+                    <input type="text" formControlName="State">
+                    <span class="alert-text" *ngIf="(addressForm.controls['State'].touched || addressForm.controls['State'].dirty) && addressForm.controls['State'].errors?.['required']">State name is required</span>
+                </div>
+                <div class="form-group">
+                    <span class="label">Zip Code</span>
+                    <input type="text" formControlName="ZipCode">
+                    <span class="alert-text" *ngIf="(addressForm.controls['ZipCode'].touched || addressForm.controls['ZipCode'].dirty) && addressForm.controls['ZipCode'].errors?.['required']">Zip Code is required</span>
+                </div>
+                <div class="form-group">
+                    <span class="label">Country</span>
+                    <input type="text" formControlName="Country">
+                    <span class="alert-text" *ngIf="(addressForm.controls['Country'].touched || addressForm.controls['Country'].dirty) && addressForm.controls['Country'].errors?.['required']">Country name is required</span>
+                </div>
+
+                <button type="submit" (click)="isValid()">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</section>

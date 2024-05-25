@@ -1,0 +1,37 @@
+.order-section {
+    font-family: system-ui;
+    width: 50vw;
+
+    .order-wrapper {
+        display: flex; 
+        width: 100%;
+        
+        .wishlist-container {
+            position: relative;
+            height: 50vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding-right: 18px;
+            padding-top: 56px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;  
+
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #F6F6F6;
+                border-radius: 2.5px;
+            };
+
+            .header-order {
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-size: 20px;
+            } 
+        }
+    }
+}

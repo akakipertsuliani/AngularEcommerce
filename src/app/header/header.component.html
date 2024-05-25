@@ -1,0 +1,40 @@
+<header class="header">
+    <div class="header-wrapper">
+        <h1 class="logo">
+            <img src="../../assets/icon/Logomark.svg" alt="Logo" />Ecomerce
+        </h1>
+        <nav class="nav-bar">
+            <ul class="list-container">
+                <li class="element" [routerLink]="'/'">Home</li>
+                <li (click)="dropDown()" class="element categories">Categories <i class="fa-solid fa-angle-down"></i>
+                    <div *ngIf="this.isClick" class="drop-down_categories">
+                        <li class="element">Categories 1</li>
+                        <li class="element">Categories 2</li>
+                        <li class="element">Categories 3</li>
+                    </div>
+                </li>
+                <li class="element">About</li>
+                <li class="element">Contact</li>
+            </ul>
+        </nav>
+        <div class="user-box">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="search"
+                    class="search-field"
+                    placeholder="Search products"
+                />
+            </div>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <div class="user-auth-container">
+                <i class="fa-solid fa-circle-user" (click)="userDropDown()"></i>
+                <div class="user-auth" *ngIf="this.isUserDropDown">
+                    <span class="user" (click)="navigationProfile()">Guest</span>
+                    <span class="auth" (click)="navigationLogin()">Login</span>
+                    <span class="auth" (click)="navigationSingup()">Sing up</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

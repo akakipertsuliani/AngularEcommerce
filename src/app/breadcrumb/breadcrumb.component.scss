@@ -1,0 +1,41 @@
+.breadcrumb-section {
+    height: 15vh;
+    background: #F6F6F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: system-ui;
+
+    .breadcrumb-wrapper {
+        height: 100%;
+        width: min(1440px, 100vw);
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        flex-direction: column;
+        box-sizing: border-box;
+        padding: 50px;
+        gap: 8px;
+
+
+        .breadcrumb-container {
+            display: flex;
+            font-weight: 500;
+            height: 50px;
+            gap: 4px;
+
+            .breadcrumb {
+                color: #5C5F6A;
+            }
+
+            .breadcrumb.active-b {
+                color: #0E1422;
+            }
+
+            i {
+              margin-top: auto;
+              color: #71747E;
+            }
+        }
+    }
+}
