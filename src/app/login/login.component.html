@@ -1,0 +1,35 @@
+<head>
+    <title>Log in</title>
+</head>
+
+<app-breadcrumb [title]="'Login'"></app-breadcrumb>
+
+<section class="login-section">
+    <div class="login-wrapper">
+        <button class="cont-google"><img src="../../assets/icon/Google.svg" alt="Google"> Continue with Google</button>
+        <div class="divide-container">
+            <div class="line"></div>
+            <span>OR</span>
+        </div>
+        <form action="" [formGroup]="formGroup">
+            <div class="form-group">
+                <span>Email</span>
+                <input type="email" formControlName="Email">
+                <span class="alert-text" *ngIf="(formGroup.controls['Email'].touched || formGroup.controls['Email'].dirty) && formGroup.controls['Email'].errors?.['required']">Email is required</span>
+                <span class="alert-text" *ngIf="(formGroup.controls['Email'].touched) && formGroup.controls['Email'].errors?.['email']">Use correct Email format</span>
+            </div>
+            <div class="form-group">
+                <span>Password</span>
+                <input type="password" formControlName="Password">
+                <span class="alert-text" *ngIf="(formGroup.controls['Password'].touched || formGroup.controls['Password'].dirty) && formGroup.controls['Password'].errors?.['required']">Password is required</span>
+                <span class="alert-text" *ngIf="this.isTrueLogIn">Login or Password is incorrect</span>
+            </div>
+            <p class="forgot-p" [routerLink]="['/forgotpassword']">Forgot Password?</p>
+            <button type="submit" (click)="isValidForm()">
+                <span *ngIf="this.isTrue">Log In</span>
+                <mat-progress-spinner diameter="25" mode="indeterminate" *ngIf="!isTrue"></mat-progress-spinner>
+            </button>
+            <p>Don't have account? <a class="go-login" [routerLink]="['/singup']">Create One</a></p>
+        </form>
+    </div>
+</section>

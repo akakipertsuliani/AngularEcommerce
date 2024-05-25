@@ -1,0 +1,26 @@
+<head>
+    <title>User</title>
+</head>
+
+<app-breadcrumb [title]="'My Account'"></app-breadcrumb>
+
+<section class="user-section">
+    <div class="user-wrapper">
+        <div class="list-wrapper">
+            <ul>
+                <li [class.active]="this.isOrderActive" (click)="setActive('order')"><img src="../../assets/icon/Cart.svg" alt="Orders"> Orders</li>
+                <li [class.active]="this.isWishListActive" (click)="setActive('wishlist')"><img src="../../assets/icon/Heart.svg" alt="Wishlist"> Wishlist</li>
+                <li [class.active]="this.isAddressActive" (click)="setActive('address')"><img src="../../assets/icon/Delivery.svg" alt="Address"> Address</li>
+                <li [class.active]="this.isPasswordActive" (click)="setActive('password')"><img src="../../assets/icon/Key.svg" alt="Password"> Password</li>
+                <li [class.active]="this.isAccountDetailsActive" (click)="setActive('account-details')"><img src="../../assets/icon/User.svg" alt="Account Detail"> Account Detail</li>
+                <li class="logout"><img src="../../assets/icon/Logout.svg" alt="Logout"> Logout</li>
+            </ul>
+            <div class="vr"></div>
+        </div>
+    </div>
+    <app-orders *ngIf="this.isOrderActive"></app-orders>
+    <app-wishlist *ngIf="this.isWishListActive"></app-wishlist>
+    <app-address *ngIf="this.isAddressActive"></app-address>
+    <app-password *ngIf="this.isPasswordActive"></app-password>
+    <app-accountdetails *ngIf="this.isAccountDetailsActive"></app-accountdetails>
+</section>

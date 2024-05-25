@@ -1,0 +1,40 @@
+.address-section {
+    font-family: system-ui;
+    width: 50vw;
+
+    .address-wrapper {
+        display: flex;
+        width: 100%;
+        
+        .address-container {
+            height: 50vh; 
+            width: 100%;
+            position: relative;
+            box-sizing: border-box;
+            padding-top: 56px;
+
+            .header-address {
+                position: absolute;
+                top: 0;
+            }
+
+            form {
+                display: grid; 
+                grid-template-columns: repeat(2, 1fr); 
+                grid-template-rows: auto;
+                gap: 16px 16px; 
+
+                .form-group {
+                    width: 100%;
+                    gap: 3px;
+                }
+
+                button {
+                    width: 144px;
+                    margin-top: 48px;
+                }
+            }
+            
+        }
+    }
+}

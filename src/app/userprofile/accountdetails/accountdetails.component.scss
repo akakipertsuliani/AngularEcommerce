@@ -1,0 +1,43 @@
+.accountDetails-section {
+    width: 50vw;
+
+    .accountDetails-wrapper {
+        width: 100%;
+
+        .accountDetails-container {
+            position: relative;
+            height: 50vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding-top: 50px;
+
+            .header-accountDetails {
+                position: absolute;
+                top: 0;
+            }
+
+            .user-image {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: #F0F1FF;
+                margin-top: 20px;
+                margin-bottom: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #4078FF;
+            }
+
+            form {
+                .label {
+                    color: #474B57;
+                }
+
+                button{
+                    width: 144px;
+                }
+            }
+        }
+    }
+}
