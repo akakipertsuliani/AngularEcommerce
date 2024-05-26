@@ -13,14 +13,12 @@ import { CommonModule,  } from '@angular/common';
     styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent {
-    private firestore: Firestore = inject(Firestore); // inject Cloud Firestore
+    private firestore: Firestore = inject(Firestore);
     product$: Observable<Product[]>;
 
     constructor() {
-        // get a reference to the user-profile collection
         const productCollection = collection(this.firestore, 'clothesdata');
 
-        // get documents (data) from the collection using collectionData
         this.product$ = collectionData(productCollection) as Observable<Product[]>;
     }
 
