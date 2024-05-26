@@ -9,9 +9,6 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { HomepageComponent } from './homepage/homepage.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { FooterComponent } from './footer/footer.component';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { environment } from './environment/envoirement';
 
 @Component({
     selector: 'app-root',
