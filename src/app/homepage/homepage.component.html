@@ -12,7 +12,9 @@
 
     <div class="detail-container">
         <div class="details">
-            <div class="icon-container"><img src="../../assets/icon/Shipping.svg" alt="Shipping"></div>
+            <div class="icon-container">
+                <img src="../../assets/icon/Shipping.svg" alt="Shipping">
+            </div>
             <h3>Free shipping</h3>
             <p>Upgrade your style today and get FREE shipping on all orders! Don't miss out.</p>
         </div>
@@ -35,15 +37,16 @@
             <span>Best Selling</span>
         </div>
         <div class="product-container">
-            <div class="product">
+            <div class="product" *ngFor="let product of product$ | async; let i = index">
                 <div class="image-container">
-                    <img src="../../assets/img/cover-1.png" alt="cover">
+                    <img [src]="product.path" alt="cover">
                 </div>
                 <div class="product-detail">
-                    <span class="product-name">Classic Monochrome Tees</span>
+                    <span class="product-name">{{ product.name }}</span>
                     <div class="in-stock-i-o">
-                        <span class="instock-d">IN STOCK</span>
-                        <span class="product-price">$35.00</span>
+                        <span *ngIf="product.inStock > 0" class="instock-d">IN STOCK</span>
+                        <span *ngIf="product.inStock <= 0" class="instock-d">OUT OF STOCK</span>
+                        <span class="product-price">{{ product.price }}</span>
                     </div>
                 </div>
             </div>

@@ -63,10 +63,10 @@
 
         .user-box {
             width: 20%;
-            height: 50px;
+            height: 70px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 22px;
             cursor: pointer;
 
             i {
@@ -77,7 +77,7 @@
                 display: flex;
                 gap: 6px;
                 align-items: center;
-                padding: 10px 15px;
+                padding: 5.5px 15px;
                 border: 1px solid #E6E7E8;
                 border-radius: 6px;
                 box-sizing: border-box;
@@ -141,6 +141,5 @@
                 }
             }
         }
-
     }
 }

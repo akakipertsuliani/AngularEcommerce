@@ -109,7 +109,7 @@
         .product-container {
             width: 80%;
             display: flex;
-            gap: 25px;
+            justify-content: space-between;
 
             .product {
                 display: flex;

@@ -19,16 +19,12 @@
         </nav>
         <div class="user-box">
             <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input
-                    type="search"
-                    class="search-field"
-                    placeholder="Search products"
-                />
+                <img src="../../assets/icon/Search.svg" alt="Search">
+                <input type="search" class="search-field" placeholder="Search products"/>
             </div>
-            <i class="fa-solid fa-cart-shopping"></i>
+            <img src="../../assets/icon/Cart.svg" alt="Cart">
             <div class="user-auth-container">
-                <i class="fa-solid fa-circle-user" (click)="userDropDown()"></i>
+                <img src="../../assets/icon/User-1.svg" alt="User-1" (click)="userDropDown()">
                 <div class="user-auth" *ngIf="this.isUserDropDown">
                     <span class="user" (click)="navigationProfile()">Guest</span>
                     <span class="auth" (click)="navigationLogin()">Login</span>
