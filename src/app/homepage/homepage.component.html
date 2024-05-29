@@ -39,7 +39,7 @@
         <div class="product-container">
             <div class="product" *ngFor="let product of product$ | async; let i = index">
                 <div class="image-container">
-                    <img [src]="product.path" alt="cover">
+                    <img [src]="product.path" alt="cover" loading="lazy">
                 </div>
                 <div class="product-detail">
                     <span class="product-name">{{ product.name }}</span>

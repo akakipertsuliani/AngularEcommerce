@@ -101,7 +101,7 @@
                 .user-auth {
                     position: absolute;
                     top: 30px;
-                    right: -45px;
+                    right: -35px;
                     display: flex;
                     flex-direction: column;
                     gap: 18px;
@@ -123,18 +123,21 @@
                         color: #5C5F6A;
                         cursor: pointer;
                         transition: .3s;
-
+                        
                         &:hover {
                             color: #000;
                         }
                     }
-
+                    
                     .auth {
                         color: #5C5F6A;
+                        padding: 5px;
+                        border-radius: 3.5px;
                         cursor: pointer;
                         transition: .3s;
-
+                        
                         &:hover {
+                            background: #E9E9EB;
                             color: #000;
                         }
                     }
