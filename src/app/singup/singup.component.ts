@@ -5,6 +5,9 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../servise/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CollectionReference} from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-singup',
@@ -22,8 +25,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class SingupComponent {
   formGroup: FormGroup;
   isTrue: boolean = true;
+  usersCollection!: CollectionReference;
 
-  constructor(private route: Router, private auth: AuthService){
+  constructor(private route: Router, private auth: AuthService, private firestore: AngularFirestore){
     this.formGroup = new FormGroup({
       Name: new FormControl("", Validators.required),
       Email: new FormControl("", [Validators.required, Validators.email]),
@@ -39,9 +43,24 @@ export class SingupComponent {
       this.isTrue = false;
 
       this.auth.regiseter(formValue.Email, formValue.Name, formValue.Password).subscribe({
-        next: () => {
-          this.route.navigate(["/profile"]);
-          this.isTrue = true;
+        next: () => { 
+          const username = this.formGroup.get('Name')?.value;
+          const email = this.formGroup.get('Email')?.value;
+
+          const registrationTime = new Date();
+          const formattedRegistrationTime = format(registrationTime, 'dd-MM-yyyy - HH:mm:ss');
+
+          this.firestore.collection("users").add({
+            _0id: this.firestore.createId(),
+            _1username: username,
+            _2email: email,
+            _3registrationTime: formattedRegistrationTime,
+          }).then(() => {
+            this.route.navigate(["/profile"]);
+            this.isTrue = true;
+          }).catch(() => {
+            this.isTrue = true;
+          });
         },
         error: () => {
           this.isTrue = true;
@@ -51,5 +70,8 @@ export class SingupComponent {
       this.formGroup.markAllAsTouched();
     }
   }
+}
 
+export interface UserProfile {
+  username: string;
 }

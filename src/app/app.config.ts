@@ -7,6 +7,8 @@ import { provideAuth, getAuth as getAuth_alias } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 const firebaseConfig = {
     apiKey: environment.firebase.apiKey,
@@ -15,7 +17,6 @@ const firebaseConfig = {
     storageBucket: environment.firebase.storageBucket,
     messagingSenderId: environment.firebase.messagingSenderId,
     appId: environment.firebase.appId,
-    locationId: environment.firebase.locationId,
 };
 
 export const appConfig: ApplicationConfig = {
@@ -27,6 +28,9 @@ export const appConfig: ApplicationConfig = {
             provideFirebaseApp(() => initializeApp(firebaseConfig)),
             provideAuth(() => getAuth()),
             provideFirestore(() => getFirestore()),
+            AngularFireModule.initializeApp(firebaseConfig),
+            AngularFirestore,
+            
         ]),
     ],
 };
