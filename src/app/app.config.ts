@@ -9,6 +9,8 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 const firebaseConfig = {
     apiKey: environment.firebase.apiKey,
@@ -30,7 +32,8 @@ export const appConfig: ApplicationConfig = {
             provideFirestore(() => getFirestore()),
             AngularFireModule.initializeApp(firebaseConfig),
             AngularFirestore,
-            
-        ]),
+            AngularFireAuth,
+            AngularFireAuthModule,
+        ]), provideAnimationsAsync(), provideAnimationsAsync(),
     ],
 };

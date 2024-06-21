@@ -1,43 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { MatMenuModule, MatMenuTrigger, MatMenu } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../servise/auth.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+    selector: 'app-header',
+    standalone: true,
+    imports: [
+        CommonModule,
+        MatMenu,
+        MatMenuTrigger,
+        MatButtonModule,
+        MatMenuModule,
+        RouterLink,
+        RouterModule,
+    ],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  public isClick: boolean = false;
-  public isUserDropDown: boolean = false
+    public isClick: boolean = false;
+    public isUserDropDown: boolean = false;
+    isUserHere: boolean = false;
 
-  dropDown() {
-    this.isClick = !this.isClick;
-  }
+    @ViewChild(MatMenuTrigger) trigger?: MatMenuTrigger;
 
-  userDropDown() {
-    this.isUserDropDown = !this.isUserDropDown;
-  }
+    constructor(private auth: AuthService, private route: Router) {
+        this.auth.isUserAuth().subscribe(data => {
+            this.isUserHere = data;
+        })
+    }
 
-  constructor(private route: Router) {}
+    someMethod() {
+        if (this.trigger) {
+            this.trigger.openMenu();
+        }
+    }
 
-  navigationLogin() {
-    this.route.navigate(["/login"]);
-    this.isClick = false;
-    this.isUserDropDown = false;
-  }
-
-  navigationSingup() {
-    this.route.navigate(["/singup"]);
-    this.isClick = false;
-    this.isUserDropDown = false;
-  }
-
-  navigationProfile() {
-    this.route.navigate(["/profile"]);
-    this.isClick = false;
-    this.isUserDropDown = false;
-  }
+    userLogout() {
+        this.auth.userLogOut();
+    }
 }

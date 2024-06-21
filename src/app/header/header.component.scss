@@ -66,12 +66,8 @@
             height: 70px;
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 15px;
             cursor: pointer;
-
-            i {
-                color: #5C5F6A;
-            }
 
             .search-box {
                 display: flex;
@@ -85,62 +81,6 @@
                 .search-field {
                     border: none;
                     outline: transparent;
-                }
-            }
-
-            .user-auth-container {
-                position: relative;
-                i {
-                    transition: .3s;
-
-                    &:hover {
-                        color: #000;
-                    }
-                }
-
-                .user-auth {
-                    position: absolute;
-                    top: 30px;
-                    right: -35px;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 18px;
-                    border: 1px solid #E9E9EB;
-                    border-radius: 6px;
-                    padding: 10px;
-                    background: #FFF;
-                    width: 80px;
-                    z-index: 4;
-
-                    span {
-                        font-size: 14px;
-                    }
-
-                    .user {
-                        width: 100%;
-                        text-align: center;
-                        border-bottom: 1px solid #5C5F6A;
-                        color: #5C5F6A;
-                        cursor: pointer;
-                        transition: .3s;
-                        
-                        &:hover {
-                            color: #000;
-                        }
-                    }
-                    
-                    .auth {
-                        color: #5C5F6A;
-                        padding: 5px;
-                        border-radius: 3.5px;
-                        cursor: pointer;
-                        transition: .3s;
-                        
-                        &:hover {
-                            background: #E9E9EB;
-                            color: #000;
-                        }
-                    }
                 }
             }
         }

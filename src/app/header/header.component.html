@@ -6,7 +6,7 @@
         <nav class="nav-bar">
             <ul class="list-container">
                 <li class="element" [routerLink]="'/'">Home</li>
-                <li (click)="dropDown()" class="element categories">Categories <i class="fa-solid fa-angle-down"></i>
+                <li class="element categories">Categories <i class="fa-solid fa-angle-down"></i>
                     <div *ngIf="this.isClick" class="drop-down_categories">
                         <li class="element">Categories 1</li>
                         <li class="element">Categories 2</li>
@@ -24,12 +24,12 @@
             </div>
             <img src="../../assets/icon/Cart.svg" alt="Cart">
             <div class="user-auth-container">
-                <img src="../../assets/icon/User-1.svg" alt="User-1" (click)="userDropDown()">
-                <div class="user-auth" *ngIf="this.isUserDropDown">
-                    <span class="user" (click)="navigationProfile()">Guest</span>
-                    <span class="auth" (click)="navigationLogin()">Login</span>
-                    <span class="auth" (click)="navigationSingup()">Sing up</span>
-                </div>
+                <button mat-button [matMenuTriggerFor]="menu"><img src="../../assets/icon/User-1.svg" alt="User-1"></button>
+                <mat-menu #menu="matMenu">
+                    <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/login"><span>Login</span></button>
+                    <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/singup"><span>Singup</span></button>
+                    <button (click)="userLogout()" *ngIf="this.isUserHere" mat-menu-item><span>Log out</span></button>
+                </mat-menu>
             </div>
         </div>
     </div>

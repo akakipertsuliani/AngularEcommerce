@@ -13,7 +13,7 @@
                 <li [class.active]="this.isAddressActive" (click)="setActive('address')"><img src="../../assets/icon/Delivery.svg" alt="Address"> Address</li>
                 <li [class.active]="this.isPasswordActive" (click)="setActive('password')"><img src="../../assets/icon/Key.svg" alt="Password"> Password</li>
                 <li [class.active]="this.isAccountDetailsActive" (click)="setActive('account-details')"><img src="../../assets/icon/User.svg" alt="Account Detail"> Account Detail</li>
-                <li class="logout"><img src="../../assets/icon/Logout.svg" alt="Logout"> Logout</li>
+                <li class="logout" (click)="this.userLogout()" ><img src="../../assets/icon/Logout.svg" alt="Logout"> Logout</li>
             </ul>
             <div class="vr"></div>
         </div>

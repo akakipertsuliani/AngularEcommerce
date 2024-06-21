@@ -5,9 +5,9 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../servise/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CollectionReference} from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { format } from 'date-fns';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-singup',
@@ -17,7 +17,8 @@ import { format } from 'date-fns';
     CommonModule, 
     BreadcrumbComponent, 
     RouterModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    HeaderComponent
   ],
   templateUrl: './singup.component.html',
   styleUrl: './singup.component.scss'
@@ -25,7 +26,7 @@ import { format } from 'date-fns';
 export class SingupComponent {
   formGroup: FormGroup;
   isTrue: boolean = true;
-  usersCollection!: CollectionReference;
+  somethingWrong: boolean = false;
 
   constructor(private route: Router, private auth: AuthService, private firestore: AngularFirestore){
     this.formGroup = new FormGroup({
@@ -60,10 +61,12 @@ export class SingupComponent {
             this.isTrue = true;
           }).catch(() => {
             this.isTrue = true;
+            this.somethingWrong = true;
           });
         },
         error: () => {
           this.isTrue = true;
+          this.somethingWrong = true;
         }
       })
     } else {
