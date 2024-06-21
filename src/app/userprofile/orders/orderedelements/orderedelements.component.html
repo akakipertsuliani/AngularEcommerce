@@ -1,29 +1,14 @@
-<div class="orders-box">
+<div class="orders-box" *ngFor="let product of product$ | async; let i = index">
     <div class="order-details">
-        <div class="image"><img src="../../../../assets/img/cover-3.png" alt="cover-image"></div>
+        <div class="image"><img [src]="product.productImage" alt="cover-image"></div>
         <div class="other-details">
-            <span class="name">Raw Black T-Shirt Lineup</span>
-            <span class="orders-date-info">Ordered on: 27 July 2023</span>
-            <span class="orders-cost">$70</span>
+            <span class="name">{{ product.productName }}</span>
+            <span class="orders-date-info">Ordered on: {{ product.orderDate }}</span>
+            <span class="orders-cost">{{ product.productPrice }}</span>
         </div>
     </div>
     <div class="orders-info">
-        <span class="order-status processing">Processing</span>
-        <button type="button" class="items-view">View items</button>
-    </div>
-    <div class="hr"></div>
-</div>
-<div class="orders-box">
-    <div class="order-details">
-        <div class="image"><img src="../../../../assets/img/cover-1.png" alt="cover-image"></div>
-        <div class="other-details">
-            <span class="name">Monochromatic Wardrobe</span>
-            <span class="orders-date-info">Ordered on: 9 march 2023</span>
-            <span class="orders-cost">$27</span>
-        </div>
-    </div>  
-    <div class="orders-info">
-        <span class="order-status complate">Completed</span>
+        <span class="order-status processing">{{ product.orderState }}</span>
         <button type="button" class="items-view">View items</button>
     </div>
     <div class="hr"></div>

@@ -71,3 +71,14 @@
     }
   }
 }
+
+.-section {
+  font-family: system-ui;
+  width: 50vw;
+
+  .-wrapper {
+      position: relative;
+      display: flex;
+      width: 100%;
+  }
+}

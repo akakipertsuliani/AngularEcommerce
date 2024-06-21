@@ -1,13 +1,8 @@
-.order-section {
-    font-family: system-ui;
-    width: 50vw;
-    
-    .order-wrapper {
-        display: flex;
-        width: 100%;
-        
+@import url(../userprofile.component.scss);
+
+.-section {
+    .-wrapper {  
         .orders-container {
-            position: relative;
             height: 50vh;
             width: 100%;
             box-sizing: border-box;
@@ -28,8 +23,9 @@
 
             .header-order {
                 position: absolute;
-                top: 0;
+                top: -24px;
                 left: 0;
+                z-index: 9;
                 font-size: 20px;
             }   
         }

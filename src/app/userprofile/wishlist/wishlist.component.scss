@@ -1,13 +1,8 @@
-.order-section {
-    font-family: system-ui;
-    width: 50vw;
+@import url(../userprofile.component.scss);
 
-    .order-wrapper {
-        display: flex; 
-        width: 100%;
-        
+.-section {
+    .-wrapper {
         .wishlist-container {
-            position: relative;
             height: 50vh;
             width: 100%;
             box-sizing: border-box;
@@ -28,7 +23,7 @@
 
             .header-order {
                 position: absolute;
-                top: 0;
+                top: -24px;
                 left: 0;
                 font-size: 20px;
             } 

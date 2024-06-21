@@ -5,6 +5,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../servise/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BreadcrumbComponent, 
     RouterModule,
     MatProgressSpinnerModule,
+    HeaderComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -26,8 +28,8 @@ export class LoginComponent {
 
   constructor(private auth: AuthService, private route: Router) {
     this.formGroup = new FormGroup({
-      Email: new FormControl("", [Validators.required, Validators.email]),
-      Password: new FormControl("", Validators.required),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", Validators.required),
     })
   }
 
@@ -35,10 +37,11 @@ export class LoginComponent {
     let isValid = this.formGroup.valid;
 
     if (isValid) {
-      const formValue = this.formGroup.getRawValue();
+      const email = this.formGroup.get('email')?.value;
+      const password = this.formGroup.get('password')?.value;
       this.isTrue = false;
 
-      this.auth.logInUser(formValue.Email, formValue.Password).subscribe({
+      this.auth.logInUser(email, password).subscribe({
         next: () => {
           this.route.navigate(["/profile"]);
           this.isTrue = true;
@@ -53,7 +56,5 @@ export class LoginComponent {
     } else {
       this.formGroup.markAllAsTouched();
     }
-
-    this.auth.logInUser('', '').subscribe().unsubscribe();
   }
 }

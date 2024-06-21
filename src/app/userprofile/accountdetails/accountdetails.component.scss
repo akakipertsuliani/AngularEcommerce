@@ -1,11 +1,8 @@
-.accountDetails-section {
-    width: 50vw;
+@import url(../userprofile.component.scss);
 
-    .accountDetails-wrapper {
-        width: 100%;
-
+.-section {
+    .-wrapper {
         .accountDetails-container {
-            position: relative;
             height: 50vh;
             width: 100%;
             box-sizing: border-box;
@@ -13,7 +10,7 @@
 
             .header-accountDetails {
                 position: absolute;
-                top: 0;
+                top: -24px;
             }
 
             .user-image {
