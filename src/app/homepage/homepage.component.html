@@ -46,7 +46,7 @@
                     <div class="in-stock-i-o">
                         <span *ngIf="product.inStock > 0" class="instock-d">IN STOCK</span>
                         <span *ngIf="product.inStock <= 0" class="instock-d">OUT OF STOCK</span>
-                        <span class="product-price">{{ product.price }}</span>
+                        <span class="product-price">{{ product.price | currency }}</span>
                     </div>
                 </div>
             </div>

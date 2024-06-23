@@ -5,6 +5,7 @@ import { SingupComponent } from './singup/singup.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { NgModule } from '@angular/core';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ProductpageComponent } from './productpage/productpage.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,11 @@ export const routes: Routes = [
         component: UserprofileComponent
     },
 
+    {
+        path: "product",
+        component: ProductpageComponent
+    },
+    
     {
         path: "**",
         component: HomepageComponent

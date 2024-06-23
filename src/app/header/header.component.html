@@ -28,6 +28,7 @@
                 <mat-menu #menu="matMenu">
                     <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/login"><span>Login</span></button>
                     <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/singup"><span>Singup</span></button>
+                    <button routerLink="/profile" *ngIf="this.isUserHere" mat-menu-item><span>Profile</span></button>
                     <button (click)="userLogout()" *ngIf="this.isUserHere" mat-menu-item><span>Log out</span></button>
                 </mat-menu>
             </div>

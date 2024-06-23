@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="sidebar">
+      <h3>Categories</h3>
+      <ul>
+        <li><mat-checkbox>Perfume</mat-checkbox></li>
+        <li><mat-checkbox>Trousers</mat-checkbox></li>
+        <li><mat-checkbox>Shoe</mat-checkbox></li>
+        <li><mat-checkbox>Handbag</mat-checkbox></li>
+        <li><mat-checkbox>T-shirt</mat-checkbox></li>
+        <li><mat-checkbox>Thermos</mat-checkbox></li>
+      </ul>
+      <h3>Color</h3>
+      <div class="colors">
+        <span class="color blue"></span>
+        <span class="color yellow"></span>
+        <span class="color green"></span>
+        <span class="color orange"></span>
+      </div>
+      <h3>Size</h3>
+      <div class="sizes">
+        <button>S</button>
+        <button class="active">M</button>
+        <button>L</button>
+        <button>XL</button>
+        <button>XXL</button>
+      </div>
+      <h3>Price</h3>
+      <div class="price-slider">
+        <mat-slider min="0" max="{{ this.range[2] }}" step="1" showTickMarks discrete [displayWith]="formatLabel">
+            <input value="0" matSliderStartThumb (input)="minValue($event)">
+            <input value="{{ this.range[2] }}" matSliderEndThumb (input)="maxValue($event)">
+        </mat-slider>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="applied-filters">
+        <span>Perfume <i class="fa-solid fa-xmark"></i></span>
+        <span>Size: M <i class="fa-solid fa-xmark"></i></span>
+      </div>
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of product$ | async; let i = index">
+            <div class="image-container">
+                <img [src]="product.path" alt="{{ product.name }}">
+            </div>
+          <div class="product-detail">
+            <span class="product-name">{{ product.name }}</span>
+            <div class="in-stock-i-o">
+                <span *ngIf="product.inStock > 0" class="instock-d">IN STOCK</span>
+                <span *ngIf="product.inStock <= 0" class="instock-d">OUT OF STOCK</span>
+                <span class="price">{{ product.price | currency }}</span>
+            </div>
+        </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <button>&laquo;</button>
+        <button *ngFor="let page of pages" (click)="goToPage(page)">{{ page }}</button>
+        <button>&raquo;</button>
+      </div>
+    </div>
+  </div>
+  
