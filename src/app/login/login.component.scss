@@ -16,17 +16,17 @@
         .cont-google {
             width: 320px;
             height: 44px;
-            border: 1px solid #b6b7bc;
+            border: 1px solid #B6B7BC;
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             outline: transparent;
             background: transparent;
-            color: #5c5f6a;
+            color: #5C5F6A;
             font-weight: 500;
             font-size: 14px;
-            cursor: pointer;
+            cursor: not-allowed;
 
             img {
                 margin-bottom: 2px;
@@ -65,7 +65,7 @@
             gap: 15px;
 
             .forgot-p {
-                color: #5c5f6a;
+                color: #5C5F6A;
                 font-weight: 700;
                 font-size: 12px;
                 align-self: end;
@@ -73,12 +73,12 @@
             }
 
             p {
-                color: #5c5f6a;
+                color: #5C5F6A;
                 font-size: 14px;
                 font-weight: 500;
 
                 .go-login {
-                    color: #5c5f6a;
+                    color: #5C5F6A;
                     text-decoration: none;
                 }
             }

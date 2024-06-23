@@ -43,7 +43,7 @@ export class LoginComponent {
 
       this.auth.logInUser(email, password).subscribe({
         next: () => {
-          this.route.navigate(["/profile"]);
+          this.route.navigate(["/product"]);
           this.isTrue = true;
           this.isTrueLogIn = false;
         },

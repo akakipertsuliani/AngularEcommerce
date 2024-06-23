@@ -57,7 +57,7 @@ export class SingupComponent {
             _2email: email,
             _3registrationTime: formattedRegistrationTime,
           }).then(() => {
-            this.route.navigate(["/profile"]);
+            this.route.navigate(["/product"]);
             this.isTrue = true;
           }).catch(() => {
             this.isTrue = true;
