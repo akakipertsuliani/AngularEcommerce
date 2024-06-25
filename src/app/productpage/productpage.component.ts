@@ -6,9 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { Product } from '../interface/interface'
-import { AuthService } from '../servise/auth.service';
-import { Router } from '@angular/router';
+import { Product } from '../interface/interface';
 
 @Component({
   selector: 'app-productpage',
@@ -17,58 +15,74 @@ import { Router } from '@angular/router';
   templateUrl: './productpage.component.html',
   styleUrls: ['./productpage.component.scss']
 })
-
 export class ProductpageComponent {
-  product$: Observable<Product[]>;
+  product$!: Observable<Product[]>;
   productMaxCost!: number;
   productCollection: any;
+  categories: string[] = ["Perfume", "Trousers", "Shoe", "Handbag", "T-shirt", "Thermos"];
+  selectedCategories: string[] = [];
   range: number[] = [0, 1000, 1000];
-  
-  constructor(private firestore: Firestore, private auth: AuthService, private route: Router) {
-    this.auth.isUserAuth().subscribe(data => {
-      if (data) {
-          this.route.navigate(["/product"]);   
-      } else {
-          this.route.navigate(["/"]);  
-      }
-    })
+  pages: number[] = [1];
 
+  constructor(private firestore: Firestore) {
     this.productCollection = collection(this.firestore, 'clothesdata');
+    this.loadProducts();
+  }
+
+  private loadProducts(): void {
     this.product$ = collectionData(this.productCollection).pipe(
       map((documents: any[]) => documents.map(doc => doc as Product)),
-      map((products: Product[]) => products.filter(product => product.id > 0)),
       map((products: Product[]) => {
         this.productMaxCost = products.reduce((max, product) => product.price > max ? product.price : max, 0);
         this.range[2] = this.productMaxCost;
         return products;
-      }),
+      })
     );
   }
 
-  pages: number[] = [1];
+  private filterProducts(): void {
+    this.product$ = collectionData(this.productCollection).pipe(
+      map((documents: any[]) => documents.map(doc => doc as Product)),
+      map((products: Product[]) => {
+        const storedCategories = localStorage.getItem('categories');
+        const selectedCategories = storedCategories ? JSON.parse(storedCategories) : [];
+
+        return products.filter(product => {
+          const matchesCategory = selectedCategories.length > 0 ? selectedCategories.includes(product.categories) : true;
+          const matchesPrice = product.price >= this.range[0] && product.price <= this.range[1];
+          return matchesCategory && matchesPrice;
+        });
+      })
+    );
+  }
+
+  getCategories(event: any): void {
+    const category = event.source.value;
+    if (event.checked) {
+      this.selectedCategories.push(category);
+    } else {
+      const index = this.selectedCategories.indexOf(category);
+      if (index > -1) {
+        this.selectedCategories.splice(index, 1);
+      }
+    }
+    localStorage.setItem('categories', JSON.stringify(this.selectedCategories));
+    this.filterProducts();
+  }
 
   goToPage(page: number): void {}
 
   minValue(event: any): void {
     this.range[0] = event.target.value;
-    this.product$ = collectionData(this.productCollection).pipe(
-      map((documents: any[]) => documents.map(doc => doc as Product)),
-      map((products: Product[]) => products.filter(product => product.price >= this.range[0] && product.price <= this.range[1])),
-    )
+    this.filterProducts();
   }
 
   maxValue(event: any): void {
     this.range[1] = event.target.value;
-    this.product$ = collectionData(this.productCollection).pipe(
-      map((documents: any[]) => documents.map(doc => doc as Product)),
-      map((products: Product[]) => products.filter(product => product.price >= this.range[0] && product.price <= this.range[1])),
-    )
+    this.filterProducts();
   }
 
   formatLabel(value: number): string {
-    if (value >= 0) {
-      return Math.round(value) + '$';
-    }
-    return `${value}`;
+    return value >= 0 ? Math.round(value) + '$' : `${value}`;
   }
 }

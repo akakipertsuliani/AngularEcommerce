@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 
 export class AuthService {
-    constructor(private firebaseAuth: Auth, private auth: AngularFireAuth) {}
+    constructor(private firebaseAuth: Auth, private auth: AngularFireAuth, private route: Router) {}
 
     regiseter(email: string, username: string, password: string): Observable<void> {
         const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password).then(
@@ -33,6 +33,7 @@ export class AuthService {
     }
 
     userLogOut() {
+        this.route.navigate(['/']);
         localStorage.clear();
         this.auth.signOut();
     }

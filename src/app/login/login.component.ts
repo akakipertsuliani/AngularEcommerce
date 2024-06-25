@@ -42,10 +42,11 @@ export class LoginComponent {
       this.isTrue = false;
 
       this.auth.logInUser(email, password).subscribe({
-        next: () => {
+        next: (data) => {
           this.route.navigate(["/product"]);
           this.isTrue = true;
           this.isTrueLogIn = false;
+          console.log(data);
         },
         error: () => {
           this.isTrue = true;
