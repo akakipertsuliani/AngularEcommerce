@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { userInterface } from '../main.interface';
+import { userInterface } from '../interface/main.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({

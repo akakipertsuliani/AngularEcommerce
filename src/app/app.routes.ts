@@ -6,6 +6,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { NgModule } from '@angular/core';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { ProductpageComponent } from './productpage/productpage.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     {
@@ -30,12 +31,14 @@ export const routes: Routes = [
 
     {
         path: "profile",
-        component: UserprofileComponent
+        component: UserprofileComponent,
+        canActivate: [authGuard]
     },
-
+    
     {
         path: "product",
-        component: ProductpageComponent
+        component: ProductpageComponent,
+        canActivate: [authGuard]
     },
     
     {
