@@ -7,5 +7,5 @@ export interface Product {
     best: boolean,
     color: string,
     categories: string,
-    size: string[],
+    size: string,
 }

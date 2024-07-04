@@ -6,15 +6,17 @@
         <nav class="nav-bar">
             <ul class="list-container">
                 <li class="element" [routerLink]="'/'">Home</li>
-                <li class="element categories">Categories <i class="fa-solid fa-angle-down"></i>
-                    <div *ngIf="this.isClick" class="drop-down_categories">
-                        <li class="element">Categories 1</li>
-                        <li class="element">Categories 2</li>
-                        <li class="element">Categories 3</li>
+                <li class="element categories" #categories [matMenuTriggerFor]="categoriesTrigger">
+                    <div class="categories-button">
+                        Categories <i class="fa-solid fa-angle-down"></i>
                     </div>
+                    <mat-menu #categoriesTrigger="matMenu">
+                        <button mat-menu-item routerLink="/product"><span>Clothes</span></button>
+                        <button mat-menu-item disabled><span>Bags</span></button>
+                    </mat-menu>
                 </li>
-                <li class="element">About</li>
-                <li class="element">Contact</li>
+                <li class="element" [routerLink]="'/about'">About</li>
+                <li class="element" [routerLink]="'/contact'">Contact</li>
             </ul>
         </nav>
         <div class="user-box">
@@ -24,12 +26,14 @@
             </div>
             <img src="../../assets/icon/Cart.svg" alt="Cart">
             <div class="user-auth-container">
-                <button mat-button [matMenuTriggerFor]="menu"><img src="../../assets/icon/User-1.svg" alt="User-1"></button>
+                <div class="user-button" [matMenuTriggerFor]="menu">
+                    <img src="../../assets/icon/User-1.svg" alt="User-1">
+                </div>
                 <mat-menu #menu="matMenu">
-                    <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/login"><span>Login</span></button>
-                    <button *ngIf="!this.isUserHere" mat-menu-item routerLink="/singup"><span>Singup</span></button>
-                    <button routerLink="/profile" *ngIf="this.isUserHere" mat-menu-item><span>Profile</span></button>
-                    <button (click)="userLogout()" *ngIf="this.isUserHere" mat-menu-item><span>Log out</span></button>
+                    <button *ngIf="!isUserHere" mat-menu-item routerLink="/login"><span>Login</span></button>
+                    <button *ngIf="!isUserHere" mat-menu-item routerLink="/signup"><span>Signup</span></button>
+                    <button routerLink="/profile" *ngIf="isUserHere" mat-menu-item><span>Profile</span></button>
+                    <button (click)="userLogout()" *ngIf="isUserHere" mat-menu-item><span>Log out</span></button>
                 </mat-menu>
             </div>
         </div>
