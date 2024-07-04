@@ -6,11 +6,8 @@
       </ul>
       <h3>Color</h3>
       <div class="colors">
-        <span class="color blue"></span>
-        <span class="color yellow"></span>
-        <span class="color green"></span>
-        <span class="color orange"></span>
-      </div>
+        <span *ngFor="let color of colors" class="color" [style.background-color]="color"></span>
+      </div>      
       <h3>Size</h3>
       <div class="sizes">
         <button>S</button>
@@ -49,7 +46,7 @@
       </div>
       <div class="pagination">
         <button>&laquo;</button>
-        <button *ngFor="let page of pages" (click)="goToPage(page)">{{ page }}</button>
+        <button *ngFor="let page of pages">{{ page }}</button>
         <button>&raquo;</button>
       </div>
     </div>
