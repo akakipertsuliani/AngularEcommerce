@@ -2,7 +2,6 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { environment } from './environment/envoirement';
 import { provideAuth, getAuth as getAuth_alias } from '@angular/fire/auth';
 import { getAuth } from 'firebase/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
@@ -11,6 +10,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from './environment/environment';
 
 const firebaseConfig = {
     apiKey: environment.firebase.apiKey,
