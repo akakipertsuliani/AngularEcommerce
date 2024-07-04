@@ -20,16 +20,16 @@ export class MainserviceService {
     }) as Observable<userInterface[]>;
   }
 
-  addUser(user: userInterface): Promise<void> {
+  addUser(user: userInterface) {
     return addDoc(this.userCollection, user).then(() => {});
   }
 
 
-  signIn(email: string, password: string): Promise<any> {
+  signIn(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
 
-  signOut(): Promise<any> {
+  signOut() {
     return this.auth.signOut();
   }
 }
