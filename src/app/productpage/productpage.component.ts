@@ -19,13 +19,16 @@ export class ProductpageComponent {
   product$!: Observable<Product[]>;
   productMaxCost!: number;
   productCollection: any;
-  categories: string[] = ["Perfume", "Trousers", "Shoe", "Handbag", "T-shirt", "Thermos"];
+  categories: string[] = [];
+  colors: string[] = [];
   selectedCategories: string[] = [];
   range: number[] = [0, 1000, 1000];
   pages: number[] = [1];
 
   constructor(private firestore: Firestore) {
     this.productCollection = collection(this.firestore, 'clothesdata');
+    this.loadCategories();
+    this.loadColors();
     this.loadProducts();
   }
 
@@ -54,6 +57,41 @@ export class ProductpageComponent {
         });
       })
     );
+  }
+
+  loadCategories() {
+    collectionData(this.productCollection).pipe(
+      map((documents: any[]) => documents.map(doc => doc as Product)),
+      map((products: Product[]) => {
+        const categoriesSet = new Set<string>();
+        products.forEach(product => {
+          if (product.categories) {
+            categoriesSet.add(product.categories);
+          }
+        });
+        return Array.from(categoriesSet);
+      })
+    ).subscribe((categories: string[]) => {
+      this.categories = categories;
+    });
+  }
+
+  loadColors() {
+    collectionData(this.productCollection).pipe(
+      map((documents: any[]) => documents.map(doc => doc as Product)),
+      map((products: Product[]) => {
+        const colorsSet = new Set<string>();
+        products.forEach(product => {
+          if (product.color) {
+            colorsSet.add(product.color);
+          }
+        });
+        return Array.from(colorsSet);
+      })
+    ).subscribe((colors: string[]) => {
+      this.colors = colors;
+      console.log(this.colors);
+    });
   }
 
   getCategories(event: any): void {
